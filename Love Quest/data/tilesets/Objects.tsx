@@ -44,6 +44,6 @@
   <image source="../graphics/objects/palm_small.png" width="64" height="128"/>
  </tile>
  <tile id="14">
-  <image source="../../../../Adobe Express - file (6).png" width="128" height="128"/>
+  <image source="../../images/princess/Adobe Express - file (6).png" width="128" height="128"/>
  </tile>
 </tileset>

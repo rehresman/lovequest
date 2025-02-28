@@ -6,6 +6,7 @@ import random
 from pytmx.util_pygame import load_pygame
 from groups import AllSprites 
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -20,7 +21,7 @@ class Game:
         
     
     def setup(self):
-        map = load_pygame(join('data','maps','world.tmx'))
+        map = load_pygame(join(BASE_DIR, 'data','maps','world.tmx'))
 
         for obj in map.get_layer_by_name('Collisions'):
             CollisionSprite((obj.x, obj.y), pygame.Surface((obj.width,obj.height)), True, (self.all_sprites, self.collision_sprites))
@@ -54,7 +55,6 @@ class Game:
             # update
             self.all_sprites.update(dt)
             # draw
-            self.display_surface.fill('black')
             self.all_sprites.draw(self.player.rect.center)
             pygame.display.update()
         pygame.quit()

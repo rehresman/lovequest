@@ -9,10 +9,12 @@ class Entity(pygame.sprite.Sprite):
 
     def load_images(self, target):
         for state in self.frames:
-            for folder_path, sub_folders, file_names in walk(join('images', target, state)):
+            img_folder = join(BASE_DIR, 'images')
+            for folder_path, sub_folders, file_names in walk(join(img_folder, target, state)):
                     if file_names:
                         for file_name in sorted(file_names, key=lambda x: int(x.split('.')[0])):
                             full_path = join(folder_path, file_name)
+                            print(full_path)
                             surf = pygame.image.load(full_path).convert_alpha()
                             self.frames[state].append(surf)
 
@@ -59,8 +61,8 @@ class Enemy(Entity):
         super().__init__(groups)
         self.type = type
         self.player = player
-        self.image = pygame.image.load(join('images', 'enemies', self.type, 'down', '0.png')).convert_alpha()
-        self.load_images(join('enemies', self.type))
+        self.image = pygame.image.load(join(BASE_DIR, 'images', 'enemies', self.type, 'down', '0.png')).convert_alpha()
+        self.load_images(join(BASE_DIR, 'images','enemies', self.type))
         self.rect = self.image.get_frect(center = pos)
         self.hitbox_rect = self.rect.inflate(-60, -90)
         self.collision_sprites = collision_sprites

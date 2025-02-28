@@ -7,7 +7,7 @@ from sprites import TextSprite, Entity
 class Player(Entity):
     def __init__(self, pos, princess, groups, collision_sprites):
         super().__init__(groups)
-        self.image = pygame.image.load(join('images', 'player', 'down', '0.png')).convert_alpha()
+        self.image = pygame.image.load(join(BASE_DIR, 'images', 'player', 'down', '0.png')).convert_alpha()
         self.load_images('player')
         self.rect = self.image.get_frect(center = pos)
         self.hitbox_rect = self.rect.inflate(-60, -90)
@@ -22,7 +22,7 @@ class Player(Entity):
         self.collision_sprites = collision_sprites
         self.distance_to_love = 10000
 
-        self.font = pygame.font.Font(join('images','Minecraft.ttf'), 75)
+        self.font = pygame.font.Font(join(BASE_DIR, 'images','Minecraft.ttf'), 75)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -55,13 +55,13 @@ class Player(Entity):
                     if self.direction.y < 0: self.hitbox_rect.top = sprite.rect.bottom
 
     def speak(self):
-        text = "Princess Annabelle: You found me! It's scary out there.  Maybe we should leave together?"
+        text = "Princess: You found me! It's scary out there.  Maybe we should leave together?"
         TextSprite((0,0), text, self.groups)
 
     def win(self):
         if self.winner and not self.love_music_playing:
             self.love_music_playing = True
-            love_music = pygame.mixer.Sound(join('audio', '8 bit love.wav'))
+            love_music = pygame.mixer.Sound(join(BASE_DIR, 'audio', '8 bit love.wav'))
             love_music.play(-1)
             self.speed = 0
             #self.speak()
